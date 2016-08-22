@@ -81,7 +81,7 @@ func (m MapClaims) Valid() error {
 			expiresAt, _ = exp.Int64()
 		}
 		delta := time.Unix(now, 0).Sub(time.Unix(expiresAt, 0))
-		vErr.Inner = fmt.Errorf("Token is expired by %v", delta)
+		vErr.Inner = fmt.Errorf("Token is expired by %v. All claims: %v", delta, m)
 		vErr.Errors |= ValidationErrorExpired
 	}
 
